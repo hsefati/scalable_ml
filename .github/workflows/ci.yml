@@ -22,18 +22,17 @@ jobs:
       with:
         python-version: "3.10"
 
-    - name: Install Poetry
-      run: |
-        curl -sSL https://install.python-poetry.org | python3 -
-        export PATH="$HOME/.local/bin:$PATH"
-  
     - name: Install dependencies
       run: |
-        poetry install
+        python -m pip install --upgrade pip
+        pip install pre-commit
 
     - name: Run pre-commit
-      run: pre-commit run --all-files
+      run: poetry run pre-commit run --all-files
+
+    # - name: Run server in background
+    #   run: uvicorn main:app &
 
     - name: Test with pytest
       run: |
-        pytest tests -vv
+        poetry run pytest tests -vv
