@@ -9,7 +9,7 @@ client = TestClient(app)
 def test_greetings():
     response = client.get("/")
     assert response.status_code == 200
-    assert response.text == '"Welcome to our model API"'
+    assert response.json() == "Welcome to our model API"
 
 
 def test_inference_correct():
