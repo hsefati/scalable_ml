@@ -4,18 +4,20 @@ from pathlib import Path
 
 import pandas as pd
 from joblib import dump, load
-from ml.data import process_data
-from ml.model import compute_model_metrics, evaluate_slices, inference, train_model
 from sklearn.model_selection import train_test_split
 
+from app.ml.data import process_data
+from app.ml.model import compute_model_metrics, evaluate_slices, inference, train_model
+
 # Define the save path
+abs_file_dir_path = Path(__file__).resolve().parent
 save_path = Path("model")
-model_file = save_path / "model.pkl"
-encoder_file = save_path / "encoder.pkl"
-lb_file = save_path / "label_binarizer.pkl"
+model_file = abs_file_dir_path / save_path / "model.pkl"
+encoder_file = abs_file_dir_path / save_path / "encoder.pkl"
+lb_file = abs_file_dir_path / save_path / "label_binarizer.pkl"
 
 # Load data
-data = pd.read_csv("data/census.csv")
+data = pd.read_csv(abs_file_dir_path / "data/census.csv")
 
 # Remove empty space from column names from CSV files
 data.columns = data.columns.str.strip()
