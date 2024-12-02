@@ -1,15 +1,12 @@
 repos:
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.8.1 # Use the latest version
+    rev: v0.8.1
     hooks:
+      - id: ruff-format
       - id: ruff
         args: [--fix, --line-length=120]
-  - repo: https://github.com/psf/black
-    rev: 23.9.1 # Use the latest version of Black
-    hooks:
-      - id: black
 
-  - repo: https://github.com/pycqa/flake8
-    rev: 6.1.0 # Use the latest version of Flake8
+  - repo: https://github.com/executablebooks/mdformat
+    rev: 0.7.19
     hooks:
-      - id: flake8
+      - id: mdformat

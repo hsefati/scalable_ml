@@ -14,8 +14,7 @@ For additional information see the Model Card paper: https://arxiv.org/pdf/1810.
 - Input Features:
   - Numerical: age, fnlgt, education-num, capital-gain, capital-loss, hours-per-week
   - Categorical: workclass, education, marital-status, occupation, relationship, race, sex, native-country
-- Target Variable: salary (binary classification: <=50K or >50K)
-
+- Target Variable: salary (binary classification: \<=50K or >50K)
 
 ## Intended Use
 
@@ -39,7 +38,6 @@ For additional information see the Model Card paper: https://arxiv.org/pdf/1810.
   - Same as the training dataset.
   - Ensures evaluation on unseen data for unbiased performance estimation.
 
-
 ## Metrics
 
 - Metrics Used:
@@ -54,8 +52,8 @@ For additional information see the Model Card paper: https://arxiv.org/pdf/1810.
 ## Ethical Considerations
 
 - Bias in Data:
-  - Model predictions depend on demographic and employment data, which may reflect societal biases (e.g., gender or race-related  disparities).
-addressing potential biases.
+  - Model predictions depend on demographic and employment data, which may reflect societal biases (e.g., gender or race-related disparities).
+    addressing potential biases.
 - Privacy:
   - Data used for training and evaluation should comply with privacy regulations (e.g., anonymization, data minimization).
 
