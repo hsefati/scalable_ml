@@ -4,7 +4,7 @@ from pathlib import Path
 import pandas as pd
 from fastapi import FastAPI
 from joblib import load
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 from app.ml.data import process_data
 
@@ -33,8 +33,8 @@ class InputData(BaseModel):
     hours_per_week: int
     native_country: str
 
-    class Config:
-        json_schema_extra = {
+    model_config = ConfigDict(
+        json_schema_extra={
             "example": {
                 "age": 35,
                 "workclass": "Self-emp-not-inc",
@@ -52,6 +52,7 @@ class InputData(BaseModel):
                 "native_country": "Canada",
             }
         }
+    )
 
 
 # instantiate FastAPI app
