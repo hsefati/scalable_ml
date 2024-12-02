@@ -1,0 +1,56 @@
+{
+    " Self-emp-not-inc": {
+        "precision": 0.9749871903462267,
+        "recall": 0.9741035856573705,
+        "f1-score": 0.973668216216002,
+        "support": 502
+    },
+    " Private": {
+        "precision": 0.9745543463782854,
+        "recall": 0.9746974697469747,
+        "f1-score": 0.9745231311224511,
+        "support": 4545
+    },
+    " Local-gov": {
+        "precision": 0.9602044547460274,
+        "recall": 0.9602803738317757,
+        "f1-score": 0.9599240195909114,
+        "support": 428
+    },
+    " ?": {
+        "precision": 0.9833721862505657,
+        "recall": 0.9835616438356164,
+        "f1-score": 0.9831130249516122,
+        "support": 365
+    },
+    " Self-emp-inc": {
+        "precision": 0.9603081073669308,
+        "recall": 0.9592760180995475,
+        "f1-score": 0.9593010507694997,
+        "support": 221
+    },
+    " Federal-gov": {
+        "precision": 0.9681343397673593,
+        "recall": 0.9680851063829787,
+        "f1-score": 0.967992375457215,
+        "support": 188
+    },
+    " State-gov": {
+        "precision": 0.9616858237547893,
+        "recall": 0.9616858237547893,
+        "f1-score": 0.9616858237547893,
+        "support": 261
+    },
+    " Without-pay": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2
+    },
+    " Never-worked": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1
+    }
+}
