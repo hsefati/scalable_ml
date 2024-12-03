@@ -81,6 +81,14 @@ print(f"Test F1 Score: {fbeta:.2f}")
 
 
 # iterate through the categorical features and save results to log and txt file
+slice_metrics_dfs = []
 for feature in cat_features:
-    evaluate_slices(y_test, preds, test, feature)
-    break
+    slice_df = evaluate_slices(y_test, preds, test, feature)
+    slice_df["feature"] = feature
+    slice_metrics_dfs.append(slice_df)
+
+# Concatenate all slice DataFrames
+combined_df = pd.concat(slice_metrics_dfs, ignore_index=True)
+# Save the combined DataFrame to a CSV file
+output_file = "slice_output.txt"
+combined_df.to_csv(output_file, index=False)

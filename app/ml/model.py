@@ -1,6 +1,5 @@
-import json
-
 import numpy as np
+import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import (
     classification_report,
@@ -92,7 +91,7 @@ def inference(model, X):
     return model.predict(X)
 
 
-def evaluate_slices(y_true, preds, X_test, feature, output_file="slice_metrics.json"):
+def evaluate_slices(y_true, preds, X_test, feature):
     """
     Evaluates the performance of the model on slices of the data based on a specific feature.
 
@@ -112,10 +111,11 @@ def evaluate_slices(y_true, preds, X_test, feature, output_file="slice_metrics.j
     slice_metrics: dict
         Dictionary containing performance metrics for each slice of the data.
     """
-    unique_values = X_test[feature].unique()  # Get unique values for the feature
-    slice_metrics = {}
+    # Initialize a list to collect slice metrics for the DataFrame
+    slice_metrics_list = []
 
-    for value in unique_values:
+    # Iterate through unique values of the feature
+    for value in X_test[feature].unique():
         # Filter the test set for the current slice
         slice_indices = X_test[feature] == value
         y_slice = y_true[slice_indices]
@@ -124,18 +124,18 @@ def evaluate_slices(y_true, preds, X_test, feature, output_file="slice_metrics.j
         # Compute classification metrics for this slice
         report = classification_report(y_slice, preds_slice, output_dict=True)
 
-        # Store the metrics for this slice
-        slice_metrics[value] = {
-            "precision": report["weighted avg"]["precision"],
-            "recall": report["weighted avg"]["recall"],
-            "f1-score": report["weighted avg"]["f1-score"],
-            "support": len(y_slice),
-        }
+        # Append metrics for the current slice to the list
+        slice_metrics_list.append(
+            {
+                "feature_value": value,
+                "precision": report["weighted avg"]["precision"],
+                "recall": report["weighted avg"]["recall"],
+                "f1-score": report["weighted avg"]["f1-score"],
+                "support": len(y_slice),
+            }
+        )
 
-    # Save the slice metrics to a JSON file
-    with open(output_file, "w") as f:
-        json.dump(slice_metrics, f, indent=4)
+    # Convert the list of metrics into a DataFrame
+    slice_metrics_df = pd.DataFrame(slice_metrics_list)
 
-    print(f"Slice metrics saved to {output_file}")
-
-    return slice_metrics
+    return slice_metrics_df
